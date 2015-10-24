@@ -3,7 +3,7 @@
 	<extension point="xbmc.addon.repository" name="Brian Hornsby's Repository">
 		<info>https://raw.githubusercontent.com/brianhornsby/repository.brianhornsby/master/repository.xml</info>
 		<checksum>https://raw.githubusercontent.com/brianhornsby/repository.brianhornsby/master/repository.xml.md5</checksum>
-		<datadir zip="true">https://raw.githubusercontent.com/brianhornsby/repository.brianhornsby/master/releases</datadir>
+		<datadir zip="true">https://raw.githubusercontent.com/brianhornsby/repository.brianhornsby/master/releases/</datadir>
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Repository for Brian Hornsby's Kodi add-ons and scripts.</summary>
