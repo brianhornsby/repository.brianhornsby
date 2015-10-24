@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<addons>
+<addon id="plugin.audio.tuneinradio" name="TuneIn Radio" version="2.1.0" provider-name="brianhornsby">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.simplejson" version="2.0.10"/>
+	</requires>
+	<extension point="xbmc.python.pluginsource" library="default.py">
+		<provides>audio</provides>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="bg">Радио TuneIn</summary>
+		<summary lang="en">TuneIn Radio</summary>
+		<summary lang="es">TuneIn Radio</summary>
+		<description lang="bg">Радио TuneIn е безплатна услуга, която ви позволява да слушате всичко, независимо къде се намирате. Каквото желаете - музика, спорт или новини. Радио TuneIn предлага над 50 000 станции от които да избирате. Можете да намерите местните станции или да откриете нови станции от целия свят. Радио TuneIn ви отвежда точно където желаете да сте.</description>
+		<description lang="en">TuneIn Radio is a free service that lets you listen to anything in the world from wherever you are. Whether you want to hear music, sports, news or current events. TuneIn Radio offers over 50,000 stations for you to choose from. From finding local stations to discovering new stations from around the world, TuneIn Radio brings you to where you want to be.</description>
+		<description lang="es">TuneIn Radio es un servicio gratuito que te permite escuchar cualquier cosa del mundo desde donde te encuentres. Si deseas escuchar música, deportes, noticias o eventos actuales. TuneIn Radio ofrece más de 50,000 estaciones radiales para escoger, desde estaciones locales hasta descubrir nuevas estaciones alrededor del mundo, TuneIn Radio te lleva a donde tu quieras estar.</description>
+		<language></language>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+		<forum>http://forum.kodi.tv/showthread.php?tid=119315</forum>
+		<website>http://brianhornsby.com/kodi_addons/tuneinradio</website>
+		<source>https://github.com/brianhornsby/plugin.audio.tuneinradio</source>
+	</extension>
+</addon>
+
+<addon id="plugin.video.bbciplayer" name="BBC iPlayer" version="1.2.3" provider-name="CaptainT, Cas, ihurst">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.requests" version="2.7.0"/>
+  </requires>
+  <extension point="xbmc.python.pluginsource" library="default.py">
+        <provides>video</provides>
+  </extension>
+  <extension point="xbmc.addon.metadata">
+    <summary lang="en">Watch TV from BBC iPlayer</summary>
+    <description lang="en">This plugin (UK only) enables playing of Live and Catchup TV content from the BBC iPlayer website.</description>
+    <platform>all</platform>
+  </extension>
+</addon>
+
+<addon id="repository.brianhornsby" name="Brian Hornsby's Repository" version="1.0.0" provider-name="brianhornsby">
+	<extension point="xbmc.addon.repository" name="Brian Hornsby's Repository">
+		<info>https://raw.githubusercontent.com/brianhornsby/repository.brianhornsby/master/repository.xml</info>
+		<checksum>https://raw.githubusercontent.com/brianhornsby/repository.brianhornsby/master/repository.xml.md5</checksum>
+		<datadir zip="true">https://raw.githubusercontent.com/brianhornsby/repository.brianhornsby/master/releases</datadir>
+	</extension>
+	<extension point="xbmc.addon.metadata">
+		<summary>Repository for Brian Hornsby's Kodi add-ons and scripts.</summary>
+		<description>Repository for Brian Hornsby's Kodi add-ons and scripts. Add-ons: BBC iPlayer and TuneIn Radio. Scripts: OpenVPN and SimilarTracks.</description>
+		<disclaimer></disclaimer>
+		<platform>all</platform>
+	</extension>
+</addon>
+
+<addon id="script.openstreetmap" name="OpenStreetMap" version="0.3.0" provider-name="Brian Hornsby">
+  <requires>
+    <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="script.module.simplejson" version="2.0.10"/>
+  </requires>
+  <extension point="xbmc.python.script" library="default.py"/>
+  <extension point="xbmc.addon.metadata">
+    <platform>all</platform>
+    <summary lang="en">OpenStreetMap</summary>
+    <description lang="en">A script that allows access to OpenStreetMap on Kodi.[CR][CR]All data is provided by © OpenStreetMap contributors (http://www.openstreetmap.org/).[CR]The data is available under the Open Database Licence (www.opendatacommons.org/licenses/odbl).[CR]MapQuest-OSM Tiles Courtesy of MapQuest (http://www.mapquest.com/)[CR]MapQuest Open Aerial Tiles Courtesy of MapQuest (http://www.mapquest.com/); Portions Courtesy of NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency[CR]Nominatim Search Courtesy of MapQuest (http://www.mapquest.com/).
+    </description>
+  </extension>
+</addon>
+
+<addon id="script.openvpn" name="OpenVPN" version="2.1.0" provider-name="brianhornsby">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.beautifulsoup" version="3.0.8"/>
+	</requires>
+	<extension point="xbmc.python.script" library="default.py"/>
+	<extension point="xbmc.addon.metadata">
+		<platform>all</platform>
+		<summary lang="en">OpenVPN addon for Kodi.</summary>
+		<description lang="en">This addon allows you to set up a number of OpenVPN configurations, which you can then run from Kodi.
+For more information on setting up this addon see http://brianhornsby.com/kodi_plugins/openvpn</description>
+		<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+		<website>http://brianhornsby.com/kodi_addons/openvpn</website>
+		<source>https://github.com/brianhornsby/script.openvpn</source>
+  </extension>
+</addon>
+
+<addon id="script.similartracks" name="Similar Tracks" version="2.0.1" provider-name="brianhornsby">
+	<requires>
+		<import addon="xbmc.python" version="2.1.0"/>
+		<import addon="script.module.simplejson" version="2.0.10"/>
+	</requires>
+	<extension point="xbmc.python.script" library="default.py"/>
+	<extension point="xbmc.addon.metadata">
+	<summary lang="en">Creates a playlist based on tracks from your music library that are similar to the currently playing track.</summary>
+	<description lang="en">Creates a playlist based on tracks from your music library that are similar to the currently playing track. Uses the last.fm track.getSimilar api.</description>
+	<platform>all</platform>
+	<license>GNU GENERAL PUBLIC LICENSE. Version 3, 29 June 2007</license>
+	<website>http://brianhornsby.com/kodi_addons/similartracks</website>
+	<source>https://github.com/brianhornsby/script.similartracks</source>
+  </extension>
+</addon>
+</addons>
