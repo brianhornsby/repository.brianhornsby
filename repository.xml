@@ -24,7 +24,7 @@
 	</extension>
 </addon>
 
-<addon id="plugin.video.bbciplayer" name="BBC iPlayer" version="1.2.3" provider-name="CaptainT, Cas, ihurst">
+<addon id="plugin.video.bbciplayer" name="BBC iPlayer" version="1.2.5" provider-name="CaptainT, Cas, ihurst">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
     <import addon="script.module.requests" version="2.7.0"/>
