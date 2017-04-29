@@ -1,0 +1,41 @@
+*** 3.0.0 ***
+Updated plugin to use Kodi name. Updated copyright date. [d9ac0ea]
+
+*** 2.0.1 ***
+Fix for issue #1 where unicode character was causing script to raise an exception.
+
+*** 2.0.0 ***
+Complete rewrite of code.
+
+*** 1.1.2 ***
+Updated JSON calls to work with Frodo.
+
+*** 1.1.1 ***
+Updated code to pep8 coding style.
+Fixed script error if Last.fm returned zero records.
+
+*** 1.1.0 ***
+Added 'run in background' setting.
+Fixed 'maximum count' setting.
+
+*** 1.0.1 ***
+Fixed 'UnicodeDecodeError' exception.
+
+*** 1.0.0 ***
+Updated version number to 1.0.0.
+Set extension point to script rather than lyric.
+
+*** 0.3.0 ***
+Left debugging statement in code.
+
+*** 0.2.0 ***
+Changed XBMC music library lookup to use json RPC.
+
+*** 0.1.0 ***
+
+Changed to lyric script.
+Tidied up code.
+
+*** 0.0.1 ***
+
+Initial release.
