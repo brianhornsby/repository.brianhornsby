@@ -40,7 +40,7 @@
 	</extension>
 	<extension point="xbmc.addon.metadata">
 		<summary>Repository for Brian Hornsby's Kodi add-ons and scripts.</summary>
-		<description>Repository for Brian Hornsby's Kodi add-ons and scripts. Add-ons: BBC iPlayer and TuneIn Radio. Scripts: OpenVPN and SimilarTracks.</description>
+		<description>Repository for Brian Hornsby's Kodi add-ons and scripts. Add-ons: TuneIn Radio. Scripts: OpenVPN and SimilarTracks.</description>
 		<disclaimer></disclaimer>
 		<platform>all</platform>
 	</extension>
