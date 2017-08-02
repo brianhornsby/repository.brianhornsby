@@ -1,0 +1,15 @@
+version: 2
+jobs:
+   build:
+      docker:
+         - image: circleci/python:2
+      working_directory: ~/repository.brianhornsby
+      steps:
+         - checkout
+         - run:
+            name: Create release
+            command: |
+                mkdir release
+         - store_artifacts:
+            path: ~/release/
+            destination: /release/
