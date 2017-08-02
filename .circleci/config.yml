@@ -1,15 +1,37 @@
 version: 2
 jobs:
-   build:
-      docker:
-         - image: circleci/python:2
-      working_directory: ~/repository.brianhornsby
-      steps:
-         - checkout
-         - run:
-            name: Create release
-            command: |
-                mkdir release
-         - store_artifacts:
-            path: ~/release/
-            destination: /release/
+  build:
+    docker:
+      - image: circleci/python:2
+    working_directory: ~/repository.brianhornsby
+    steps:
+      - checkout
+      - run:
+        name: Create release
+        command: |
+            mkdir ~/release
+      - store_artifacts:
+        path: ~/release/
+        destination: /release/
+  tuneinradio:
+    docker:
+      - image: circleci/python:2
+    working_directory: ~/plugin.audio.tuneinradio
+    steps:
+      - run:
+        name: Create release
+          command: |
+            git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.tuneinradio.git .
+            export GIT_LAST_COMMIT=`git rev-parse --short=7 HEAD`
+            cd ..
+            zip -r ~/release/plugin.audio.tuneinradio-$(echo $CIRCLE_BRANCH | sed 's/\//_/g')-${GIT_LAST_COMMIT}.zip plugin.audio.tuneinradio -x "*.git/*" "*.gitignore" "*.circleci/*"
+      - store_artifacts:
+        path: ~/release/
+        destination: /release/
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+      - tuneinradio
