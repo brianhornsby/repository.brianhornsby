@@ -1,9 +1,12 @@
+defaults: &defaults
+  working_directory: ${HOME}
+  docker:
+    - image: circleci/python:2
+
 version: 2
 jobs:
   repository:
-    docker:
-      - image: circleci/python:2
-    working_directory: ~/repository.brianhornsby
+    <<: *defaults
     steps:
       - checkout
       - run:
@@ -15,18 +18,15 @@ jobs:
           destination: /release/
 
   overcast:
-    docker:
-      - image: circleci/python:2
-    working_directory: ~/plugin.audio.overcast
+    <<: *defaults
     steps:
       - run:
           name: Create release
           command: |
             mkdir -p ~/.ssh
             echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==' >> ~/.ssh/known_hosts
-            git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.overcast.git .
+            git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.overcast.git
             export GIT_LAST_COMMIT=`git rev-parse --short=7 HEAD`
-            cd ..
             mkdir ~/release
             zip -r ~/release/plugin.audio.overcast-$(echo $CIRCLE_BRANCH | sed 's/\//_/g')-${GIT_LAST_COMMIT}.zip plugin.audio.overcast -x "*.git/*" "*.gitignore" "*.circleci/*"
       - store_artifacts:
@@ -34,8 +34,7 @@ jobs:
           destination: /release/
 
   tuneinradio:
-    docker:
-      - image: circleci/python:2
+    <<: *defaults
     working_directory: ~/plugin.audio.tuneinradio
     steps:
       - run:
@@ -43,9 +42,8 @@ jobs:
           command: |
             mkdir -p ~/.ssh
             echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==' >> ~/.ssh/known_hosts
-            git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.tuneinradio.git .
+            git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.tuneinradio.git
             export GIT_LAST_COMMIT=`git rev-parse --short=7 HEAD`
-            cd ..
             mkdir ~/release
             zip -r ~/release/plugin.audio.tuneinradio-$(echo $CIRCLE_BRANCH | sed 's/\//_/g')-${GIT_LAST_COMMIT}.zip plugin.audio.tuneinradio -x "*.git/*" "*.gitignore" "*.circleci/*"
       - store_artifacts:
