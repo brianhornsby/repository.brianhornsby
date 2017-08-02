@@ -54,12 +54,12 @@ jobs:
 
 workflows:
   version: 2
-  repository:
+  build:
     jobs:
       - overcast
       - tuneinradio:
           requires:
             - overcast
-      - repository
+      - repository:
           requires:
             - tuneinradio
