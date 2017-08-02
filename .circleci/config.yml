@@ -1,5 +1,5 @@
 defaults: &defaults
-  working_directory: ${HOME}
+  working_directory: ~/
   docker:
     - image: circleci/python:2
 
