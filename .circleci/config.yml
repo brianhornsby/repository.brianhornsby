@@ -38,4 +38,6 @@ workflows:
   build:
     jobs:
       - build
-      - tuneinradio
+      - tuneinradio:
+          requires:
+            - build
