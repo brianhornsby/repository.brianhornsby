@@ -27,6 +27,7 @@ jobs:
             git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.tuneinradio.git .
             export GIT_LAST_COMMIT=`git rev-parse --short=7 HEAD`
             cd ..
+            mkdir ~/release
             zip -r ~/release/plugin.audio.tuneinradio-$(echo $CIRCLE_BRANCH | sed 's/\//_/g')-${GIT_LAST_COMMIT}.zip plugin.audio.tuneinradio -x "*.git/*" "*.gitignore" "*.circleci/*"
       - store_artifacts:
           path: ~/release/
