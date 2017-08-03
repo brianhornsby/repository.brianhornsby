@@ -23,11 +23,13 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/releases ~/.ssh/known_hosts
+          at: ~/releases 
+      - attach_workspace:
+          at: ~/.ssh/known_hosts
       - run:
           name: Create release
           command: |
-            ls .ssh
+            ls ~/.ssh
             # git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.overcast.git
             export GIT_LAST_COMMIT=`git rev-parse --short=7 HEAD`
             zip -r ~/releases/plugin.audio.overcast-$(echo $CIRCLE_BRANCH | sed 's/\//_/g')-${GIT_LAST_COMMIT}.zip plugin.audio.overcast -x "*.git/*" "*.gitignore" "*.circleci/*"
@@ -36,11 +38,13 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ~/releases ~/.ssh/known_hosts
+          at: ~/releases 
+      - attach_workspace:
+          at: ~/.ssh/known_hosts
       - run:
           name: Create TuneIn Radio release
           command: |
-            ls .ssh
+            ls ~/.ssh
             # git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.tuneinradio.git
             export GIT_LAST_COMMIT=`git rev-parse --short=7 HEAD`
             zip -r ~/releases/plugin.audio.tuneinradio-$(echo $CIRCLE_BRANCH | sed 's/\//_/g')-${GIT_LAST_COMMIT}.zip plugin.audio.tuneinradio -x "*.git/*" "*.gitignore" "*.circleci/*"
