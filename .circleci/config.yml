@@ -27,7 +27,8 @@ jobs:
       - run:
           name: Create release
           command: |
-            git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.overcast.git
+            ls .ssh
+            # git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.overcast.git
             export GIT_LAST_COMMIT=`git rev-parse --short=7 HEAD`
             zip -r ~/releases/plugin.audio.overcast-$(echo $CIRCLE_BRANCH | sed 's/\//_/g')-${GIT_LAST_COMMIT}.zip plugin.audio.overcast -x "*.git/*" "*.gitignore" "*.circleci/*"
 
@@ -39,7 +40,8 @@ jobs:
       - run:
           name: Create TuneIn Radio release
           command: |
-            git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.tuneinradio.git
+            ls .ssh
+            # git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.tuneinradio.git
             export GIT_LAST_COMMIT=`git rev-parse --short=7 HEAD`
             zip -r ~/releases/plugin.audio.tuneinradio-$(echo $CIRCLE_BRANCH | sed 's/\//_/g')-${GIT_LAST_COMMIT}.zip plugin.audio.tuneinradio -x "*.git/*" "*.gitignore" "*.circleci/*"
 
