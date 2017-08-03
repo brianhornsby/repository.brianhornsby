@@ -15,10 +15,7 @@ jobs:
             mkdir -p ~/.ssh
             echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==' >> ~/.ssh/known_hosts
       - persist_to_workspace:
-          # Must be relative path from working_directory
-          root: releases
-          root: .ssh
-          # Must be relative path from root
+          root: releases .ssh/known_hosts\
           paths:
             - echo-output
 
@@ -26,10 +23,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          # Must be absolute path or relative path from working_directory
-          at: releases
-      - attach_workspace:
-          at: .ssh
+          at: releases .ssh/known_hosts
       - run:
           name: Create release
           command: |
@@ -41,10 +35,7 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          # Must be absolute path or relative path from working_directory
-          at: releases
-      - attach_workspace:
-          at: .ssh
+          at: releases .ssh/known_hosts
       - run:
           name: Create TuneIn Radio release
           command: |
