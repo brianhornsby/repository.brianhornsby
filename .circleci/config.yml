@@ -13,7 +13,7 @@ jobs:
       - run:
           name: Setup
           command: |
-            mkdir ~/release
+            mkdir releases
       - persist_to_workspace:
           # Must be relative path from working_directory
           root: releases
