@@ -7,16 +7,18 @@ version: 2
 jobs:
   setup:
     <<: *defaults
-    working_directory: ~/repository.brianhornsby
     steps:
-      - checkout
       - run:
           name: Setup
           command: |
             mkdir releases
+            mkdir -p ~/.ssh
+            echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==' >> ~/.ssh/known_hosts
       - persist_to_workspace:
           # Must be relative path from working_directory
-          root: releases
+          root:
+            releases
+            .ssh
           # Must be relative path from root
           paths:
             - echo-output
@@ -26,30 +28,30 @@ jobs:
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: repository.brianhornsby/releases
+          at:
+            releases
+            .ssh
       - run:
           name: Create release
           command: |
-            mkdir -p ~/.ssh
-            echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==' >> ~/.ssh/known_hosts
             git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.overcast.git
             export GIT_LAST_COMMIT=`git rev-parse --short=7 HEAD`
-            zip -r ~/repository.brianhornsby/releases/plugin.audio.overcast-$(echo $CIRCLE_BRANCH | sed 's/\//_/g')-${GIT_LAST_COMMIT}.zip plugin.audio.overcast -x "*.git/*" "*.gitignore" "*.circleci/*"
+            zip -r ~/releases/plugin.audio.overcast-$(echo $CIRCLE_BRANCH | sed 's/\//_/g')-${GIT_LAST_COMMIT}.zip plugin.audio.overcast -x "*.git/*" "*.gitignore" "*.circleci/*"
 
   tuneinradio:
     <<: *defaults
     steps:
       - attach_workspace:
           # Must be absolute path or relative path from working_directory
-          at: repository.brianhornsby/releases
+          at:
+            releases
+            .ssh
       - run:
           name: Create TuneIn Radio release
           command: |
-            mkdir -p ~/.ssh
-            echo 'github.com ssh-rsa AAAAB3NzaC1yc2EAAAABIwAAAQEAq2A7hRGmdnm9tUDbO9IDSwBK6TbQa+PXYPCPy6rbTrTtw7PHkccKrpp0yVhp5HdEIcKr6pLlVDBfOLX9QUsyCOV0wzfjIJNlGEYsdlLJizHhbn2mUjvSAHQqZETYP81eFzLQNnPHt4EVVUh7VfDESU84KezmD5QlWpXLmvU31/yMf+Se8xhHTvKSCZIFImWwoG6mbUoWf9nzpIoaSjB+weqqUUmpaaasXVal72J+UX2B+2RPW3RcT0eOzQgqlJL3RKrTJvdsjE3JEAvGq3lGHSZXy28G3skua2SmVi/w4yCE6gbODqnTWlg7+wC604ydGXA8VJiS5ap43JXiUFFAaQ==' >> ~/.ssh/known_hosts
             git clone -b ${CIRCLE_BRANCH} git@github.com:brianhornsby/plugin.audio.tuneinradio.git
             export GIT_LAST_COMMIT=`git rev-parse --short=7 HEAD`
-            zip -r ~/repository.brianhornsby/releases/plugin.audio.tuneinradio-$(echo $CIRCLE_BRANCH | sed 's/\//_/g')-${GIT_LAST_COMMIT}.zip plugin.audio.tuneinradio -x "*.git/*" "*.gitignore" "*.circleci/*"
+            zip -r ~/releases/plugin.audio.tuneinradio-$(echo $CIRCLE_BRANCH | sed 's/\//_/g')-${GIT_LAST_COMMIT}.zip plugin.audio.tuneinradio -x "*.git/*" "*.gitignore" "*.circleci/*"
 
 workflows:
   version: 2
