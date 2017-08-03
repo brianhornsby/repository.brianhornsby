@@ -58,7 +58,7 @@ workflows:
       - setup
       - overcast:
           requires:
-            - repository
+            - setup
       - tuneinradio:
           requires:
-            - repository
+            - setup
